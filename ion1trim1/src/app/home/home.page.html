@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      NUBANKO
+      CALCULADORA
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,20 +9,35 @@
 <ion-content [fullscreen]="true">
 
   <div id="container">
-   <ion-item>
-     <ion-label position="floating">Login</ion-label>
-     <ion-input [(ngModel)]="login"></ion-input>
-   </ion-item>
-
-   <ion-item>
-     <ion-label position="floating">Senha</ion-label>
-     <ion-input type="password" [(ngModel)]="senha"></ion-input>
-   </ion-item>
-
    <div>
-     <ion-button color="primary" expand="block" (click)="validar()">ENTRAR</ion-button>
-   </div>
+     <ion-item>
+       <ion-label position="floating">
+         1° Número
+        </ion-label>
+       <ion-input type="number" [(ngModel)]="num1"></ion-input>
+      </ion-item>
 
-   <div>{{ mensagem }}</div>
+     <ion-item>
+      <ion-label position="floating">
+        2° Número
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="num2"></ion-input>
+    </ion-item>
+
+    <div>
+      <ion-button color="warning" expand="block" (click)="somar()">Somar</ion-button>
+    </div>
+    <div>
+      <ion-button color="danger" expand="block" (click)="subtrair()">Subtrair</ion-button>
+    </div>
+    <div>
+      <ion-button color="dark" expand="block" (click)="multiplicar()">Multiplicação</ion-button>
+    </div>
+    <div>
+      <ion-button color="success" expand="block" (click)="dividir()">Dividir</ion-button>
+    </div>
+
+    <div>{{resposta}}</div>
+   </div>
   </div>
 </ion-content>
