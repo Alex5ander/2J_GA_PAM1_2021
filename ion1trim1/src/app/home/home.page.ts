@@ -9,7 +9,7 @@ export class HomePage {
   num1 = null;
   num2 = null;
   resposta = '';
-  
+
   constructor() {}
 
   temnumero(): boolean {
@@ -18,28 +18,27 @@ export class HomePage {
 
   somar(): void {
     if(this.temnumero()){
-      this.resposta = String(this.num1 + this.num2);
+      this.resposta = String((this.num1 + this.num2).toFixed(2));
     }
   }
 
   subtrair(): void {
     if(this.temnumero()){
-      this.resposta = String(this.num1 - this.num2);
+      this.resposta = String((this.num1 - this.num2).toFixed(2));
     }
   }
 
   multiplicar(): void {
     if(this.temnumero()){
-      this.resposta = String(this.num1 * this.num2);
+      this.resposta = String((this.num1 * this.num2).toFixed(2));
     }
   }
 
   dividir(): void {
     if(this.temnumero()){
-      if(this.num2 === 0){
-        this.resposta = "Não pode ser dividido por zero";
-      }else {
-        this.resposta = String(this.num1 / this.num2);
+      this.resposta = "Não pode ser dividido por zero";
+      if(this.num2 !== 0){
+        this.resposta = String((this.num1 / this.num2).toFixed(2));
       }
     }
   }
