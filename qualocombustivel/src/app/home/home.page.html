@@ -8,14 +8,18 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-img></ion-img>
-    <div>
-      <ion-input type="number" placeholder="Preço da Gasolina"></ion-input>
-    </div>
-    <div>
-      <ion-input type="number" placeholder="Preço do Etanol"></ion-input>
-    </div>
+    <ion-img src="assets/{{imagem}}"></ion-img>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Preço da Gasolina" [(ngModel)]="gasolina"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Preço do Etanol" [(ngModel)]="etanol"></ion-input>
+    </ion-item>
 
     <ion-button expand="block">Verificar</ion-button>
+
+    <ion-img></ion-img>
   </div>
 </ion-content>

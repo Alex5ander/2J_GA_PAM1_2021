@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  gasolina = null;
+  etanol = null;
+  imagem = "";
   constructor() {}
 
+  verificar(): void{
+
+  }
 }
