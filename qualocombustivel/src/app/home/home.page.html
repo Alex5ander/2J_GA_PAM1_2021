@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-img src="assets/{{imagem}}"></ion-img>
+    <ion-img src="assets/default.jpg"></ion-img>
 
     <ion-item>
       <ion-input type="number" placeholder="Preço da Gasolina" [(ngModel)]="gasolina"></ion-input>
@@ -18,8 +18,14 @@
       <ion-input type="number" placeholder="Preço do Etanol" [(ngModel)]="etanol"></ion-input>
     </ion-item>
 
-    <ion-button expand="block">Verificar</ion-button>
+    <ion-button expand="block" (click)="verificar()" >Verificar</ion-button>
 
-    <ion-img></ion-img>
+    <div class="footer">
+      <h3>{{title}}</h3>
+      <div class="images">
+        <ion-img *ngIf="images[0] !== '' " src="assets/{{images[0]}}"></ion-img>
+         <ion-img *ngIf="images[1] !== '' " src="assets/{{images[1]}}"></ion-img>
+      </div>
+    </div>
   </div>
 </ion-content>
