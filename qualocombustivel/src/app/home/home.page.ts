@@ -8,25 +8,26 @@ import { Component } from '@angular/core';
 export class HomePage {
   gasolina = null;
   etanol = null;
-  images = ["", ""];
-  title = "";
+  images = [null, null];
+  title = null;
   constructor() {}
 
   verificar(): void{
    if(this.gasolina != null && this.etanol != null){
-    let g = this.etanol + (this.etanol * .3);
-    this.title = "";
-    this.images = ["", ""];
-    if(g > this.gasolina){
+    let diff = this.gasolina - this.etanol;
+    this.title = null
+    this.images = [null, null];
+    if(diff < this.gasolina * .3){
       this.title = "Gasolina";
       this.images[0] = "gasolina.png";
-    }else if(g < this.gasolina){
+    }else if(diff > this.gasolina * .3){
       this.title = "Etanol";
       this.images[1] = "etanol.png";
     }else{
       this.title = "Gasolina e Etanol";
       this.images = ["gasolina.png", "etanol.png"];
     }
+    window.location.href = "/home#imgs";
    }
   }
 }

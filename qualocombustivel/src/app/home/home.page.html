@@ -11,20 +11,26 @@
     <ion-img src="assets/default.jpg"></ion-img>
 
     <ion-item>
+      <ion-label position="floating">
+        Gasolina
+      </ion-label>
       <ion-input type="number" placeholder="Preço da Gasolina" [(ngModel)]="gasolina"></ion-input>
     </ion-item>
 
     <ion-item>
+      <ion-label position="floating">
+        Etanol
+      </ion-label>
       <ion-input type="number" placeholder="Preço do Etanol" [(ngModel)]="etanol"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" (click)="verificar()" >Verificar</ion-button>
+    <ion-button disabled="{{gasolina == null || etanol == null}}" expand="block" color="success" (click)="verificar()" >Verificar</ion-button>
 
     <div class="footer">
-      <h3>{{title}}</h3>
-      <div class="images">
-        <ion-img *ngIf="images[0] !== '' " src="assets/{{images[0]}}"></ion-img>
-         <ion-img *ngIf="images[1] !== '' " src="assets/{{images[1]}}"></ion-img>
+      <h3 *ngIf="title">{{title}}</h3>
+      <div class="images" id="imgs">
+        <ion-img *ngIf="images[0]" src="assets/{{images[0]}}"></ion-img>
+         <ion-img *ngIf="images[1]" src="assets/{{images[1]}}"></ion-img>
       </div>
     </div>
   </div>

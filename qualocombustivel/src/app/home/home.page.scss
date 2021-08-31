@@ -1,23 +1,32 @@
 #container {
   width:100%;
   padding: 8px 16px;
-}
-ion-img {
-  margin: auto;
-  max-width: 100%;
-}
-.footer {
-  width:100%;
-  padding: 8px;
-  h3{
-    text-align: center;
-  }
-  .images {
-    display: flex;
-    justify-content: center;
-  }
+
   ion-img {
-    width:75%;
-    margin: 8px;
+    margin: auto;
+    max-width: 100%;
+  }
+
+  ion-button, ion-item {
+    margin:12px auto;
+  }
+
+  .footer {
+    width:100%;
+    padding: 8px;
+
+    h3{
+      text-align: center;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+    }
+
+    ion-img {
+      width:75%;
+      margin: 8px;
+    }
   }
 }
