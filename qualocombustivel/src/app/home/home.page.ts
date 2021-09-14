@@ -27,7 +27,6 @@ export class HomePage {
       this.title = "Gasolina e Etanol";
       this.images = ["gasolina.png", "etanol.png"];
     }
-    window.location.href = "/home#imgs";
    }
   }
 }
