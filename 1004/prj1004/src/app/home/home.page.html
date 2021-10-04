@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Revisão
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-item>
+      <ion-label position="floating">Nome:</ion-label>
+      <ion-input type="text" [(ngModel)]="nome" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ano de nascimento:</ion-label>
+      <ion-input type="number" [(ngModel)]="anoNasc" ></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="verificar()" >
+      Verificar
+    </ion-button>
+
+    <ion-button expand="block" (click)="limpar()" color="danger" >
+      Limpar
+    </ion-button>
+
+    <div>
+        <p>{{ mensagem1 }}</p>
+        <p>{{ mensagem2 }}</p>
+    </div>
+  </div>
+</ion-content>
