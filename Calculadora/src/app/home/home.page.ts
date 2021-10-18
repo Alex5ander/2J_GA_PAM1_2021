@@ -25,9 +25,15 @@ export class HomePage {
         this.valor += digito;
       }
     }else{
-      if(this.eNumero(ultimoDigito) && !this.operador){
-        this.operador = digito;
-        this.valor += digito;
+      if(this.eNumero(ultimoDigito)){
+        if(!this.operador){
+          this.operador = digito;
+          this.valor += digito;
+        }else {
+          this.calcular();
+          this.operador = digito;
+          this.valor += this.operador;
+        }
       }
     }
   }
