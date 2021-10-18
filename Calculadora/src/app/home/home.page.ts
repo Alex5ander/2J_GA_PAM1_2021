@@ -8,15 +8,15 @@ import { Component } from '@angular/core';
 export class HomePage {
 
   valor = '';
-  n1 = null;
-  n2 = null;
+  n1 = '';
+  n2 = '';
   operador = null;
 
   constructor() {}
 
   insereUmDigito(digito) {
     let ultimoDigito = this.valor[this.valor.length -1];
-    if(!isNaN(digito)){
+    if(this.eNumero(digito)){
       if(!this.operador){
           this.n1 += digito;
           this.valor += digito;
@@ -25,29 +25,35 @@ export class HomePage {
         this.valor += digito;
       }
     }else{
-      if(isNaN(ultimoDigito)){
+      if(this.eNumero(ultimoDigito) && !this.operador){
         this.operador = digito;
         this.valor += digito;
       }
     }
   }
+  eNumero(digito) {
+    return !isNaN(digito);
+  }
   calcular() {
     if(this.n1 && this.n2 && this.operador){
-      if(this.operador === "+"){
+      if(this.operador === '+'){
         this.valor = (parseFloat(this.n1) + parseFloat(this.n2)).toString();
-      }else if(this.operador === "-"){
+      }else if(this.operador === '-'){
         this.valor = (parseFloat(this.n1) - parseFloat(this.n2)).toString();
-      }else if(this.operador === "*"){
+      }else if(this.operador === 'x'){
         this.valor = (parseFloat(this.n1) * parseFloat(this.n2)).toString();
-      }else if(this.operador === "/"){
+      }else if(this.operador === '/'){
         this.valor = (parseFloat(this.n1) / parseFloat(this.n2)).toString();
       }
+      this.n1 = this.valor;
+      this.n2 = '';
+      this.operador = '';
     }
   }
   limpar() {
-    this.n1 = null;
-    this.n2 = null;
-    this.operador = null;
-    this.valor = "";
+    this.n1 = '';
+    this.n2 = '';
+    this.operador = '';
+    this.valor = '';
   }
 }
