@@ -7,64 +7,93 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  valor = '';
+  display = '';
   n1 = '';
   n2 = '';
   operador = '';
 
   constructor() {}
 
-  insereUmDigito(digito: string) {
-    if(this.eNumero(digito)){
-      if(!this.operador){
-        this.n1 += digito;
-      }else {
-        this.n2 += digito;
+  insereNumero(digito: string) {
+    if(this.operadorVazio()){
+      this.n1 += digito;
+    }else if(!this.operadorVazio()){
+      this.n2 += digito;
+    }
+
+    this.display = this.n1+''+this.operador+''+this.n2;
+  }
+  insereZero() {
+    if(!this.operadorVazio()){
+      if(this.n2Vazio()){
+        this.n2 = "0";
+      }else if(Math.abs(Number(this.n2)) > 0){
+        this.n2 += "0";
       }
-    }else if(this.eOperador(digito)) {
-      if(this.n1 !== "" && this.n2 === "") {
-        this.operador = digito;
-      }else if(this.n2 !== "") {
-        this.calcular();
-        this.operador = digito;
-      }
-    }else if(digito === ".") {
-      if(this.n1 === "") {
-        this.n1 = "0.";
-      }else if(this.operador === "" && this.n1.search(/\./) == -1){
-       this.n1 += digito;
-      }else if(this.operador !== "") {
-        if(this.n2 === ""){
-          this.n2 = "0.";
-        }else if(this.n2.search(/\./) == -1){
-          this.n2 += digito;
-        }
+    }else if(this.n1Vazio()){
+      this.n1 = "0";
+    }else if(Math.abs(Number(this.n1)) > 0){
+      this.n1 += "0";
+    }
+
+    this.display = this.n1+''+this.operador+''+this.n2;
+  }
+  insereOperador(operador) {
+
+    if(!this.n1Vazio() && this.n2Vazio()) {
+      this.operador = operador;
+    }else if(!this.n2Vazio()) {
+      this.calcular();
+      this.operador = operador;
+    }else {
+      this.n2 = this.n1;
+      this.calcular();
+      this.operador = operador;
+    }
+
+    this.display = this.n1+''+this.operador+''+this.n2;
+  }
+  insereUmPonto() {
+
+    if(this.n1Vazio()) {
+      this.n1 = "0.";
+    }else if(!this.n1TemPonto() && this.operadorVazio()) {
+      this.n1 += ".";
+    }else if(!this.operadorVazio()) {
+      if(this.n2Vazio()) {
+        this.n2 = "0.";
+      }else if(!this.n2TemPonto()) {
+        this.n2 += ".";
       }
     }
 
-    this.valor = this.n1+''+this.operador+''+this.n2;
+    this.display = this.n1+''+this.operador+''+this.n2;
   }
   calcular() {
-    if(parseFloat(this.n2) === 0) {
-      alert("Erro!\nNão é possível dividir por 0");
-    }else if(this.n1 && this.n2 && this.operador){
+    if(this.n1 && this.n2 && this.operador){
       if(this.operador === '+'){
-        this.valor = this.somar();
+        this.display = this.somar();
       }else if(this.operador === '-'){
-        this.valor = this.subtrair();
+        this.display = this.subtrair();
       }else if(this.operador === 'x'){
-        this.valor = this.multiplicar();
-      }else if(this.operador === '/'){
-        this.valor = this.dividir();
+        this.display = this.multiplicar();
+      }else if(this.operador === '/' && this.n2 !== "0"){
+        this.display = this.dividir();
+      }else {
+        this.display = "";
+        alert("Erro!\nNão é possível dividir por 0");
       }
 
-      this.n1 = this.valor;
+      this.n1 = this.display;
       this.n2 = '';
       this.operador = '';
     }
   }
-  eNumero(digito) { return !isNaN(digito); }
-  eOperador(digito) { return digito === "+" || digito === '-' || digito === 'x' || digito === '/'; }
+  n1TemPonto() { return this.n1.search(/\./) !== -1}
+  n2TemPonto() { return this.n2.search(/\./) !== -1}
+  n1Vazio() { return this.n1 === "" }
+  n2Vazio() { return this.n2 === "" }
+  operadorVazio() { return this.operador === "" }
   somar() { return (parseFloat(this.n1) + parseFloat(this.n2)).toString() }
   subtrair() { return (parseFloat(this.n1) - parseFloat(this.n2)).toString() }
   multiplicar() { return (parseFloat(this.n1) * parseFloat(this.n2)).toString() }
@@ -73,6 +102,6 @@ export class HomePage {
     this.n1 = '';
     this.n2 = '';
     this.operador = '';
-    this.valor = '';
+    this.display = '';
   }
 }
