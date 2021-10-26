@@ -16,9 +16,17 @@ export class HomePage {
 
   insereNumero(digito: string) {
     if(this.operadorVazio()){
-      this.n1 += digito;
+      if(this.n1 === "0") {
+        this.n1 = digito;
+      }else {
+        this.n1 += digito;
+      }
     }else if(!this.operadorVazio()){
-      this.n2 += digito;
+      if(this.n2 === "0") {
+        this.n2 = digito;
+      }else {
+        this.n2 += digito;
+      }
     }
 
     this.display = this.n1+''+this.operador+''+this.n2;
