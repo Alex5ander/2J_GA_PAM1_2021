@@ -79,17 +79,11 @@ export class HomePage {
   }
   calcular() {
     if(this.n1 && this.n2 && this.operador){
-      if(this.operador === '+'){
-        this.display = this.somar();
-      }else if(this.operador === '-'){
-        this.display = this.subtrair();
-      }else if(this.operador === 'x'){
-        this.display = this.multiplicar();
-      }else if(this.operador === '/' && this.n2 !== "0"){
-        this.display = this.dividir();
-      }else {
-        this.display = "";
-        alert("Erro!\nNão é possível dividir por 0");
+      switch(this.operador) {
+        case '+': this.display = this.somar(); break;
+        case '-': this.display = this.subtrair(); break;
+        case 'x': this.display = this.multiplicar(); break;
+        case '/': this.display = this.dividir(); break;
       }
 
       this.n1 = this.display;
@@ -105,7 +99,13 @@ export class HomePage {
   somar() { return (parseFloat(this.n1) + parseFloat(this.n2)).toString() }
   subtrair() { return (parseFloat(this.n1) - parseFloat(this.n2)).toString() }
   multiplicar() { return (parseFloat(this.n1) * parseFloat(this.n2)).toString() }
-  dividir() { return (parseFloat(this.n1) / parseFloat(this.n2)).toString() }
+  dividir() {
+    if(Number(this.n2) === 0){
+      alert("Erro!\nNão é possível dividir por 0");
+      return '';
+    }
+    return (parseFloat(this.n1) / parseFloat(this.n2)).toString();
+  }
   limpar() {
     this.n1 = '';
     this.n2 = '';
