@@ -47,13 +47,14 @@ export class HomePage {
     this.display = this.n1+''+this.operador+''+this.n2;
   }
   insereOperador(operador) {
-
-    if(!this.n1Vazio() && this.n2Vazio()) {
+    if(this.n1Vazio() && operador === "-"){
+      this.n1 += operador;
+    }else if(!this.n1Vazio() && this.n1 !== '-' && this.n2Vazio()) {
       this.operador = operador;
     }else if(!this.n2Vazio()) {
       this.calcular();
       this.operador = operador;
-    }else {
+    }else if(!this.n1Vazio() && !this.n2Vazio()){
       this.n2 = this.n1;
       this.calcular();
       this.operador = operador;
