@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PokemonService } from '../services/pokemon.services.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  regioes: any[] = [];
 
-  constructor() {}
+  constructor(private pkmServ: PokemonService) {
+
+  }
+
+  ngOnInit() {
+    this.pkmServ.buscarRegioes()
+    .subscribe(e => {
+      this.regioes = e.results;
+    })
+  }
 
 }
