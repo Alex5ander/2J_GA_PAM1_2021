@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <ion-item *ngFor="let regiao of regioes" (click)="mostrarDetalhes(regiao.url)" >
-      {{ regiao.name }}
+      {{ regiao.name | titlecase }}
     </ion-item>
   </div>
 </ion-content>
