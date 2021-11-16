@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokemonService } from '../services/pokemon.services.service';
 
 @Component({
@@ -9,8 +10,14 @@ import { PokemonService } from '../services/pokemon.services.service';
 export class HomePage implements OnInit {
   regioes: any[] = [];
 
-  constructor(private pkmServ: PokemonService) {
+  constructor(private pkmServ: PokemonService, private rota : Router) {
 
+  }
+
+  mostrarDetalhes(url: string) {
+    console.log(1)
+    this.pkmServ.setUrl(url);
+    this.rota.navigateByUrl("/detalhes");
   }
 
   ngOnInit() {

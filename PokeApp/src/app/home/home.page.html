@@ -1,14 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      POKEDEX
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-item *ngFor="let regiao of regioes">
+    <ion-item *ngFor="let regiao of regioes" (click)="mostrarDetalhes(regiao.url)" >
       {{ regiao.name }}
     </ion-item>
   </div>
