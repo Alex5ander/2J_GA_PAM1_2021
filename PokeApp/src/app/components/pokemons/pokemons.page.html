@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pokemons</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Pokemons na região {{ regiao | uppercase }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+    <ion-item button *ngFor="let pokemon of pokemons" (click)="mostrarPokemon(pokemon.pokemon_species.name)" >
+      {{ pokemon.pokemon_species.name | titlecase }}
+    </ion-item>
+  </div>
 </ion-content>

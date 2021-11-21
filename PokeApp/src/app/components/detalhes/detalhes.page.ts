@@ -7,23 +7,27 @@ import { PokemonService } from 'src/app/services/pokemon.services.service';
   styleUrls: ['./detalhes.page.scss'],
 })
 export class DetalhesPage implements OnInit {
-  pokemons: any[] = [];
-  regiao: string = "";
+  pokemon = null;
+  tipos = [];
   constructor(private pkmServ: PokemonService) { }
 
   ngOnInit() {
     this.loadingData();
   }
 
+  mostrarDetalhesTipo(tipo: string) {
+    this.pkmServ.buscarDetalhesTipo(tipo)
+    .subscribe(detalhesTipo => {
+      this.tipos.push(detalhesTipo);
+    })
+  }
+
   loadingData() {
-    this.pkmServ.buscarPokemons().subscribe(dados => {
-      console.log(dados);
-      if(dados.region !== null) {
-        this.regiao = dados.region.name;
-      }else {
-        this.regiao = dados.names[2].name;
-      }
-      this.pokemons = dados.pokemon_entries;
-    });
+    this.pokemon = this.pkmServ.pokemon;
+    
+    for(let t of this.pokemon.types) {
+      this.mostrarDetalhesTipo(t.type.name);
+    }
+    
   }
 }

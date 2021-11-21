@@ -14,10 +14,9 @@ export class HomePage implements OnInit {
 
   }
 
-  mostrarDetalhes(url: string) {
-    console.log(1)
+  mostrarPokemons(url: string) {
     this.pkmServ.setUrl(url);
-    this.rota.navigateByUrl("/detalhes");
+    this.rota.navigateByUrl("/pokemons");
   }
 
   ngOnInit() {

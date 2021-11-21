@@ -1,14 +1,98 @@
 <ion-header>
   <ion-toolbar>
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title>POKEMON IN {{ regiao | uppercase }}</ion-title>
+    <ion-title>Pokemon {{ pokemon.name | titlecase }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-item *ngFor="let pokemon of pokemons">
-      {{ pokemon.pokemon_species.name | titlecase }}
-    </ion-item>
-  </div>
+  <ion-card>
+    <ion-img [src]="pokemon.sprites.front_default"></ion-img>
+
+    <ion-card-header>
+
+      <ion-card-title >
+        {{ pokemon.name | titlecase }} 
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        altura {{ pokemon.height }} m, {{ pokemon.weight }} kg
+      </ion-card-subtitle>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>Tipo</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col *ngFor="let t of pokemon.types" class="{{t.type.name}} type" >
+            <ion-label>{{ t.type.name | titlecase }}</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-list *ngIf="detalhesTipo">
+          <ion-list-header>
+            <ion-label>{{ detalhesTipo.name | titlecase }} </ion-label>
+          </ion-list-header>
+          
+          <ion-label> Fraquezas </ion-label>
+  
+          <ion-item *ngFor="let item of detalhesTipo.damage_relations.double_damage_from" >
+            <ion-label> {{ item.name | titlecase }} </ion-label>
+          </ion-item>
+  
+          <ion-label> Resistência </ion-label>
+  
+          <ion-item *ngFor="let item of detalhesTipo.damage_relations.half_damage_from" >
+            <ion-label> {{ item.name | titlecase }} </ion-label>
+          </ion-item>
+  
+          <ion-label> Imunidade </ion-label>
+  
+          <ion-item *ngFor="let item of detalhesTipo.damage_relations.no_damage_from" >
+            <ion-label> {{ item.name | titlecase }} </ion-label>
+          </ion-item>
+  
+        </ion-list> -->
+
+      </ion-grid>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+        <ion-list-header>
+          <ion-label> Status </ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of pokemon.stats">
+          <ion-label>{{ item.stat.name }} : {{ item.base_stat }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          <ion-label> Abilidades </ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of pokemon.abilities">
+          <ion-label>{{ item.ability.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+     
+      <ion-list>
+        <ion-list-header>
+          <ion-label> Movimentos </ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of pokemon.moves">
+          <ion-label>{{ item.move.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
