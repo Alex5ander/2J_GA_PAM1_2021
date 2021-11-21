@@ -21,8 +21,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.pkmServ.buscarRegioes()
-    .subscribe(e => {
-      this.regioes = e.results;
+    .subscribe(({ results }) => {
+      this.regioes = results;
     })
   }
 

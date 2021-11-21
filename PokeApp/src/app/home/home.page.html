@@ -1,15 +1,13 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar>
     <ion-title>
-      POKEDEX
+      Pokedex
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-item button *ngFor="let regiao of regioes" (click)="mostrarPokemons(regiao.url)" >
-      {{ regiao.name | titlecase }}
-    </ion-item>
-  </div>
+<ion-content [fullscreen]="true" padding>
+  <ion-item button *ngFor="let regiao of regioes" (click)="mostrarPokemons(regiao.url)" >
+    {{ regiao.name | titlecase }}
+  </ion-item>
 </ion-content>
