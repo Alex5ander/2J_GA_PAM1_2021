@@ -40,8 +40,8 @@
               </ion-col>
             </ion-row>
       
-            <ion-row>
-              <ion-col class="{{it.name}} type" *ngFor="let it of item.damage_relations.double_damage_from" >
+            <ion-row class="{{it.name}} type" *ngFor="let it of item.damage_relations.double_damage_from">
+              <ion-col>
                 <ion-label> 
                   {{ it.name | titlecase }} 
                 </ion-label>
@@ -54,8 +54,8 @@
               </ion-col>
             </ion-row>
     
-           <ion-row>
-             <ion-col class="{{it.name}} type" *ngFor="let it of item.damage_relations.half_damage_from" >
+           <ion-row class="{{it.name}} type" *ngFor="let it of item.damage_relations.half_damage_from" >
+             <ion-col>
               <ion-label  > 
                 {{ it.name | titlecase }} 
               </ion-label>
@@ -68,19 +68,20 @@
               </ion-col>
             </ion-row>
 
+            <ion-row class="{{it.name}} type" *ngFor="let it of item.damage_relations.no_damage_from" >
+              <ion-col >
+                <ion-label> 
+                  {{ it.name | titlecase }} 
+                </ion-label>
+              </ion-col>
+            </ion-row>
+
             <ion-row  *ngIf="item.damage_relations.no_damage_from.length === 0" >
               <ion-col>
                 <ion-label>Esse tipo não possui imunidades</ion-label>
               </ion-col>
             </ion-row>
 
-            <ion-row>
-              <ion-col class="{{it.name}} type" *ngFor="let it of item.damage_relations.no_damage_from" >
-                <ion-label> 
-                  {{ it.name | titlecase }} 
-                </ion-label>
-              </ion-col>
-            </ion-row>
           </ion-col>
         </ion-row>
 

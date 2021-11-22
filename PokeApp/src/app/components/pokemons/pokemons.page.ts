@@ -17,8 +17,10 @@ export class PokemonsPage implements OnInit {
     this.loadingData();
   }
 
-  mostrarPokemon(nome : string) {
-    this.pkmServ.buscarPokemon(nome).subscribe(dados => {
+  mostrarPokemon(url : string) {
+    let split = url.split('/');
+    let id = split[split.length -2];
+    this.pkmServ.buscarPokemon(id).subscribe(dados => {
       this.pkmServ.setPokemon(dados);
       this.rota.navigateByUrl('/detalhes');
     });
@@ -26,6 +28,7 @@ export class PokemonsPage implements OnInit {
 
   loadingData() {
     this.pkmServ.buscarPokemons().subscribe(dados => {
+      console.log(dados)
       if(dados.region !== null) {
         this.regiao = dados.region.name;
       }else {

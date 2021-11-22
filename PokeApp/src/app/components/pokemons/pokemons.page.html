@@ -7,7 +7,7 @@
 
 <ion-content padding>
   <div>
-    <ion-item button *ngFor="let pokemon of pokemons" (click)="mostrarPokemon(pokemon.pokemon_species.name)" >
+    <ion-item button *ngFor="let pokemon of pokemons" (click)="mostrarPokemon(pokemon.pokemon_species.url)" >
       {{ pokemon.pokemon_species.name | titlecase }}
     </ion-item>
   </div>
