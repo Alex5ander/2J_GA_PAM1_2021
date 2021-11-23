@@ -28,7 +28,7 @@ export class DetalhesPage implements OnInit {
 
   loadingData() {
     this.pokemon = this.pkmServ.pokemon;
-    
+
     for(let t of this.pokemon.types) {
       this.mostrarDetalhesTipo(t.type.name);
     }
