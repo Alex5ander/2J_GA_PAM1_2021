@@ -28,7 +28,6 @@ export class PokemonsPage implements OnInit {
 
   loadingData() {
     this.pkmServ.buscarPokemons().subscribe(dados => {
-      console.log(dados)
       if(dados.region !== null) {
         this.regiao = dados.region.name;
       }else {

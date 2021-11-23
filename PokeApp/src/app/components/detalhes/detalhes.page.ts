@@ -8,7 +8,6 @@ import { PokemonService } from 'src/app/services/pokemon.services.service';
 })
 export class DetalhesPage implements OnInit {
   pokemon = null;
-  tipos = [];
   constructor(private pkmServ: PokemonService) { }
 
   ngOnInit() {
@@ -18,7 +17,12 @@ export class DetalhesPage implements OnInit {
   mostrarDetalhesTipo(tipo: string) {
     this.pkmServ.buscarDetalhesTipo(tipo)
     .subscribe(detalhesTipo => {
-      this.tipos.push(detalhesTipo);
+      this.pokemon.types = this.pokemon.types.map(t => {
+        if(t.type.name === tipo){
+          t.damage_relations = detalhesTipo.damage_relations;
+        }
+        return t;
+      });
     })
   }
 
