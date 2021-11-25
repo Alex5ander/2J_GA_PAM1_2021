@@ -35,8 +35,14 @@ export class PokemonService {
     catchError(error => error));
   }
 
-  buscarPokemon(nome : string) : Observable<any> {
-    return this.http.get<any>(this.baseURL + '/pokemon/' + nome + '?lang=pt')
+  buscarId(url: string) : Observable<any> {
+    return this.http.get<any>(url)
+    .pipe(map(({ id }) => id),
+    catchError(error => error));
+  }
+
+  buscarPokemon(id: string) : Observable<any> {
+    return this.http.get<any>(this.baseURL + '/pokemon/' + id + '?lang=pt')
     .pipe(map(pokemon => pokemon),
     catchError(error => error));
   }

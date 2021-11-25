@@ -2,21 +2,6 @@ ion-img {
     image-rendering: pixelated;
     max-width: 200px;
     margin: auto;
-    animation: loop 0.5s infinite;
-}
-
-@keyframes loop {
-    0% {
-        transform:translateY(0px);
-    }
-
-    50% {
-        transform:translateY(10px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
 }
 
 .normal {

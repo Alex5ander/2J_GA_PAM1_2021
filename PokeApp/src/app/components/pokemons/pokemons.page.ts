@@ -18,11 +18,11 @@ export class PokemonsPage implements OnInit {
   }
 
   mostrarPokemon(url : string) {
-    let split = url.split('/');
-    let id = split[split.length -2];
-    this.pkmServ.buscarPokemon(id).subscribe(dados => {
-      this.pkmServ.setPokemon(dados);
-      this.rota.navigateByUrl('/detalhes');
+    this.pkmServ.buscarId(url).subscribe(id => {
+      this.pkmServ.buscarPokemon(id).subscribe(pokemon => {
+        this.pkmServ.setPokemon(pokemon);
+        this.rota.navigateByUrl('/detalhes');
+      });
     });
   }
 
