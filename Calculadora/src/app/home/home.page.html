@@ -4,12 +4,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-text>{{ display }}</ion-text>
-      </ion-col>
-    </ion-row>
+  <div class="controls">
+    <ion-text>{{ display }}</ion-text>
     <ion-row>
       <ion-col>
         <ion-button color="light" expand="block" (click)="insereNumero('7')" >7</ion-button>
@@ -89,5 +85,5 @@
         </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </div>
 </ion-content>
