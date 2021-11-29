@@ -11,7 +11,10 @@ export class DetalhesPage implements OnInit {
   constructor(private pkmServ: PokemonService) { }
 
   ngOnInit() {
-    this.loadingData();
+    this.pokemon = this.pkmServ.pokemon;
+    for(let t of this.pokemon.types) {
+      this.mostrarDetalhesTipo(t.type.name);
+    }
   }
 
   mostrarDetalhesTipo(tipo: string) {
@@ -26,12 +29,4 @@ export class DetalhesPage implements OnInit {
     })
   }
 
-  loadingData() {
-    this.pokemon = this.pkmServ.pokemon;
-
-    for(let t of this.pokemon.types) {
-      this.mostrarDetalhesTipo(t.type.name);
-    }
-    
-  }
 }

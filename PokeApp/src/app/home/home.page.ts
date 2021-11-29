@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { PokemonService } from '../services/pokemon.services.service';
 
 @Component({
@@ -10,19 +11,22 @@ import { PokemonService } from '../services/pokemon.services.service';
 export class HomePage implements OnInit {
   regioes: any[] = [];
 
-  constructor(private pkmServ: PokemonService, private rota : Router) {
+  constructor(private pkmServ: PokemonService, private rota : Router, private loadingController : LoadingController) { }
 
-  }
-
-  mostrarPokemons(url: string) {
+  async mostrarPokemons(url: string) {
     this.pkmServ.setUrl(url);
     this.rota.navigateByUrl("/pokemons");
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loader = await this.loadingController.create({
+      message: "Carregando regiões...",
+    });
+    loader.present();
     this.pkmServ.buscarRegioes()
     .subscribe(({ results }) => {
       this.regioes = results;
+      loader.dismiss();
     })
   }
 

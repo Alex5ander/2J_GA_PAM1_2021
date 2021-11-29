@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  display = '';
+  display = '0';
   n1 = '';
   n2 = '';
   operador = '';
@@ -111,6 +111,6 @@ export class HomePage {
     this.n1 = '';
     this.n2 = '';
     this.operador = '';
-    this.display = '';
+    this.display = '0';
   }
 }

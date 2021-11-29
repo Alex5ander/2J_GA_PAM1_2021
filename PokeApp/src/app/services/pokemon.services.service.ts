@@ -11,9 +11,7 @@ export class PokemonService {
   baseURL = "https://pokeapi.co/api/v2";
   pokemon = null;
 
-  constructor (private http: HttpClient) {
-
-  }
+  constructor (private http: HttpClient) { }
 
   setUrl(url: string) {
     this.url = url;
@@ -24,7 +22,7 @@ export class PokemonService {
   }
 
   buscarRegioes () : Observable<any>{
-    return this.http.get<any>(this.baseURL+'/pokedex?lang=pt')
+    return this.http.get<any>(this.baseURL+'/pokedex')
     .pipe(map(regioes => regioes),
     catchError(error => error));
   }
@@ -42,13 +40,13 @@ export class PokemonService {
   }
 
   buscarPokemon(id: string) : Observable<any> {
-    return this.http.get<any>(this.baseURL + '/pokemon/' + id + '?lang=pt')
+    return this.http.get<any>(this.baseURL + '/pokemon/' + id)
     .pipe(map(pokemon => pokemon),
     catchError(error => error));
   }
 
   buscarDetalhesTipo(tipo: string) : Observable<any> {
-    return this.http.get<any>(this.baseURL + '/type/' + tipo + '?lang=pt')
+    return this.http.get<any>(this.baseURL + '/type/' + tipo)
     .pipe(map(detalhesTipo => detalhesTipo),
     catchError(error => error));
   }
