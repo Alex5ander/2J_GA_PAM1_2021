@@ -36,10 +36,13 @@ export class PokemonsPage implements OnInit {
   async mostrarPokemon(url : string) {
     const loader = await this.loading("Carregando Pokemon...");
     this.pkmServ.buscarId(url).subscribe(id => {
+  
       this.pkmServ.buscarPokemon(id).subscribe(pokemon => {
         this.pkmServ.setPokemon(pokemon);
-        loader.dismiss();
+        
+        loader.dismiss(); 
         this.rota.navigateByUrl('/detalhes');
+
       });
     });
   }
