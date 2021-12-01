@@ -41,11 +41,15 @@ export class DetalhesPage implements OnInit {
       this.mostrarDetalhesTipo(t.type.name);
     }
 
-    if(colors.length == 2) {
-      this.background = `background:linear-gradient(${colors[0]}, ${colors[1]});`; 
-    }else {
-      this.background = `background-color:${colors[0]};`;
-    }
+    // if(colors.length == 2) {
+    //   this.background = {
+    //     background:`linear-gradient(${colors[0]}, ${colors[1]});`
+    //   };
+    // }else {
+    //   this.background = `background-color:${colors[0]};`;
+    // }
+
+    this.background = "{'background-color':red}"
 
     console.log(this.background);
   }
