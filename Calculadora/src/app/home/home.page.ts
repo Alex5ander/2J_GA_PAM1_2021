@@ -11,75 +11,86 @@ export class HomePage {
   n1 = '';
   n2 = '';
   operador = '';
+  temponto = false;
+  ultimaoperacao = '';
+  ultimonumero = '';
 
   constructor() {}
 
   insereNumero(digito: string) {
     if(this.operadorVazio()){
-      if(this.n1 === "0") {
-        this.n1 = digito;
+      if(digito === '0' && this.temponto) {
+        this.n1 += '0';
       }else {
         this.n1 += digito;
+        this.n1 = parseFloat(this.n1).toString();
       }
     }else if(!this.operadorVazio()){
-      if(this.n2 === "0") {
-        this.n2 = digito;
+      if(digito === '0' && this.temponto) {
+        this.n2 += '0';
       }else {
         this.n2 += digito;
+        this.n2 = parseFloat(this.n2).toString();
       }
     }
 
     this.display = this.n1+''+this.operador+''+this.n2;
   }
-  insereZero() {
-    if(!this.operadorVazio()){
-      if(this.n2Vazio()){
-        this.n2 = "0";
-      }else if(Math.abs(Number(this.n2)) > 0){
-        this.n2 += "0";
-      }
-    }else if(this.n1Vazio()){
-      this.n1 = "0";
-    }else if(Math.abs(Number(this.n1)) > 0){
-      this.n1 += "0";
-    }
 
-    this.display = this.n1+''+this.operador+''+this.n2;
-  }
   insereOperador(operador) {
-    if(this.n1Vazio() && operador === "-"){
-      this.n1 += operador;
-    }else if(!this.n1Vazio() && this.n1 !== '-' && this.n2Vazio()) {
-      this.operador = operador;
-    }else if(!this.n2Vazio()) {
-      this.calcular();
-      this.operador = operador;
-    }else if(!this.n1Vazio() && !this.n2Vazio()){
-      this.n2 = this.n1;
-      this.calcular();
-      this.operador = operador;
+   
+    if(operador !== '=') {
+      
+      if(!this.n1Vazio() && this.n2Vazio()) {
+        this.operador = operador;
+        this.display = this.n1+''+this.operador+''+this.n2;
+      }
+      else if(!this.n1Vazio() && !this.operadorVazio() && !this.n2Vazio()) {
+        this.calcular();
+        this.operador = operador;
+        this.display = this.n1+''+this.operador+''+this.n2;
+      }
+     
     }
 
-    this.display = this.n1+''+this.operador+''+this.n2;
+    this.temponto = false;
   }
   insereUmPonto() {
-
-    if(this.n1Vazio()) {
-      this.n1 = "0.";
-    }else if(!this.n1TemPonto() && this.operadorVazio()) {
-      this.n1 += ".";
-    }else if(!this.operadorVazio()) {
-      if(this.n2Vazio()) {
+    if(!this.temponto) {
+      if(this.n1Vazio()) {
+        this.temponto = true;
+        this.n1 = "0.";
+      }else if(this.operador && this.n2Vazio()) {
+        this.temponto = true;
         this.n2 = "0.";
-      }else if(!this.n2TemPonto()) {
+      }else if(!this.n1Vazio() && this.operadorVazio()) {
+        this.temponto = true;
+        this.n1 += ".";
+      }else if(!this.n2Vazio()) {
+        this.temponto = true;
         this.n2 += ".";
       }
     }
-
+  
     this.display = this.n1+''+this.operador+''+this.n2;
   }
   calcular() {
-    if(this.n1 && this.n2 && this.operador){
+
+    if(this.ultimaoperacao && this.ultimonumero && this.operador == '') {
+      this.n2 = this.ultimonumero;
+
+      switch(this.ultimaoperacao) {
+        case '+': this.display = this.somar(); break;
+        case '-': this.display = this.subtrair(); break;
+        case 'x': this.display = this.multiplicar(); break;
+        case '/': this.display = this.dividir(); break;
+      }
+      
+      this.n1 = this.display;
+      this.n2 = '';
+      this.operador = '';
+    }else if(this.n1 && this.n2 && this.operador){
+    
       switch(this.operador) {
         case '+': this.display = this.somar(); break;
         case '-': this.display = this.subtrair(); break;
@@ -87,22 +98,29 @@ export class HomePage {
         case '/': this.display = this.dividir(); break;
       }
 
+      this.ultimaoperacao = this.operador;
+      this.ultimonumero = this.n2;
+      
       this.n1 = this.display;
       this.n2 = '';
       this.operador = '';
     }
+
+    if(this.display.includes('.')) {
+      this.temponto = true;
+    }else {
+      this.temponto = false;
+    }
   }
-  n1TemPonto() { return this.n1.search(/\./) !== -1}
-  n2TemPonto() { return this.n2.search(/\./) !== -1}
-  n1Vazio() { return this.n1 === "" }
-  n2Vazio() { return this.n2 === "" }
-  operadorVazio() { return this.operador === "" }
+  n1Vazio() { return this.n1 === '' }
+  n2Vazio() { return this.n2 === '' }
+  operadorVazio() { return this.operador === '' }
   somar() { return (parseFloat(this.n1) + parseFloat(this.n2)).toString() }
   subtrair() { return (parseFloat(this.n1) - parseFloat(this.n2)).toString() }
   multiplicar() { return (parseFloat(this.n1) * parseFloat(this.n2)).toString() }
   dividir() {
     if(Number(this.n2) === 0){
-      alert("Erro!\nNão é possível dividir por 0");
+      alert('Erro!\nNão é possível dividir por 0');
       return '';
     }
     return (parseFloat(this.n1) / parseFloat(this.n2)).toString();
@@ -110,6 +128,9 @@ export class HomePage {
   limpar() {
     this.n1 = '';
     this.n2 = '';
+    this.temponto = false;
+    this.ultimaoperacao = '';
+    this.ultimonumero = '';
     this.operador = '';
     this.display = '0';
   }
