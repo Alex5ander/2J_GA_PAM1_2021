@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Cliente/Desktop/2J_GA_PAM1_2021/PokeApp/android/app/src/main/res/layout/activity_main.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Cliente/Desktop/2J_GA_PAM1_2021/PokeApp/node_modules/@capacitor/android/capacitor/src/main/res/layout/bridge_layout_main.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Cliente/Desktop/2J_GA_PAM1_2021/PokeApp/node_modules/@capacitor/android/capacitor/src/main/res/layout/fragment_bridge.xml" value="0.2611111111111111" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
