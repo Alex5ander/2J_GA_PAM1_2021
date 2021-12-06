@@ -1,7 +1,7 @@
 ion-text {
-  font-size: 32px;
+  font-size: 2rem;
   display: block;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
   text-align: right;
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
@@ -18,15 +18,14 @@ ion-button:active {
   animation: active 0.1s linear;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
-  flex-direction: column;
+ion-row:not(:first-child) {
+  flex: 1;
 }
 
-ion-row {
-  flex: 1;
+ion-grid {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
 @keyframes active {

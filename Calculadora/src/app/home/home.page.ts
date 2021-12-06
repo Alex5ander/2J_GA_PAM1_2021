@@ -41,13 +41,19 @@ export class HomePage {
    
     if(operador !== '=') {
       
-      if(!this.n1Vazio() && this.n2Vazio()) {
+      if(!this.n1Vazio() && !this.operadorVazio() && this.n2Vazio() && operador == '-') {
+        this.n2 = "-";
+        this.display = this.n1+''+this.operador+''+this.n2;
+      }else if(!this.n1Vazio() && this.n2Vazio()) {
         this.operador = operador;
         this.display = this.n1+''+this.operador+''+this.n2;
       }
       else if(!this.n1Vazio() && !this.operadorVazio() && !this.n2Vazio()) {
         this.calcular();
         this.operador = operador;
+        this.display = this.n1+''+this.operador+''+this.n2;
+      }else if(operador == "-" && this.n1Vazio()) {
+        this.n1 = "-";
         this.display = this.n1+''+this.operador+''+this.n2;
       }
      
@@ -75,7 +81,6 @@ export class HomePage {
     this.display = this.n1+''+this.operador+''+this.n2;
   }
   calcular() {
-
     if(this.ultimaoperacao && this.ultimonumero && this.operador == '') {
       this.n2 = this.ultimonumero;
 
@@ -91,12 +96,28 @@ export class HomePage {
       this.operador = '';
     }else if(this.n1 && this.n2 && this.operador){
     
+      if(this.operador == '/' && this.n2 == '0') {
+        this.display = "Erro";
+        setTimeout(() => {
+          this.limpar();
+        }, 500);
+        return;
+      } 
+
+      let resultado = '0';
+
       switch(this.operador) {
-        case '+': this.display = this.somar(); break;
-        case '-': this.display = this.subtrair(); break;
-        case 'x': this.display = this.multiplicar(); break;
-        case '/': this.display = this.dividir(); break;
+        case '+': resultado = this.somar(); break;
+        case '-': resultado = this.subtrair(); break;
+        case 'x': resultado = this.multiplicar(); break;
+        case '/': resultado = this.dividir(); break;
       }
+
+      if(isNaN(parseFloat(resultado))) {
+        return;
+      }
+
+      this.display = resultado;
 
       this.ultimaoperacao = this.operador;
       this.ultimonumero = this.n2;
@@ -118,13 +139,7 @@ export class HomePage {
   somar() { return (parseFloat(this.n1) + parseFloat(this.n2)).toString() }
   subtrair() { return (parseFloat(this.n1) - parseFloat(this.n2)).toString() }
   multiplicar() { return (parseFloat(this.n1) * parseFloat(this.n2)).toString() }
-  dividir() {
-    if(Number(this.n2) === 0){
-      alert('Erro!\nNão é possível dividir por 0');
-      return '';
-    }
-    return (parseFloat(this.n1) / parseFloat(this.n2)).toString();
-  }
+  dividir() { return (parseFloat(this.n1) / parseFloat(this.n2)).toString() }
   limpar() {
     this.n1 = '';
     this.n2 = '';
