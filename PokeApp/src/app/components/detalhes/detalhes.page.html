@@ -12,40 +12,15 @@
     
     <ion-card-header>
 
-      <ion-card-title class="ion-text-center">
-        {{ pokemon.name | titlecase }}
-      </ion-card-title>
-
-      <ion-card-subtitle class="ion-text-center" color="dark">
-        Altura {{ pokemon.height / 10 }} metros, Peso {{ pokemon.weight / 10 }} quilos
-      </ion-card-subtitle>
-
-     <ion-list>
-      <ion-list-header>
-        <ion-label>Abilidades</ion-label>
-      </ion-list-header>
-
-      <ion-item lines="full" *ngFor="let item of pokemon.abilities">
-        <ion-label>{{ item.ability.name | titlecase }}</ion-label>
-          <slot *ngIf="item.is_hidden">
-            <br>
-            <ion-label>Oculta</ion-label>
-          </slot>
-        </ion-item>
-      </ion-list>
-
-      <ion-list>
-        <ion-list-header>
-          <ion-label>Status</ion-label>
-        </ion-list-header>
-
-        <ion-item lines="full" *ngFor="let item of pokemon.stats">
-          <ion-label>{{ item.stat.name | titlecase }}</ion-label>
-          <ion-label class="ion-text-right">{{ item.base_stat }}</ion-label>
-        </ion-item>
-      </ion-list>
-
       <ion-grid [ngStyle]="{'background-color':'white'}">
+
+        <ion-card-title class="ion-text-center">
+          {{ pokemon.name | titlecase }}
+        </ion-card-title>
+  
+        <ion-card-subtitle class="ion-text-center" color="dark">
+          Altura {{ pokemon.height / 10 }} metros, Peso {{ pokemon.weight / 10 }} quilos
+        </ion-card-subtitle>
 
         <ion-row>
           <ion-col>
@@ -115,6 +90,33 @@
         </ion-row>
 
       </ion-grid>
+
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Abilidades</ion-label>
+        </ion-list-header>
+
+        <ion-row class="ion-text-center">
+          <ion-col lines="full" *ngFor="let item of pokemon.abilities">
+            <ion-label>{{ item.ability.name | titlecase }}</ion-label>
+            <slot *ngIf="item.is_hidden">
+              <br>
+              <ion-label>Oculta</ion-label>
+            </slot>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Status</ion-label>
+        </ion-list-header>
+
+        <ion-item lines="full" *ngFor="let item of pokemon.stats">
+          <ion-label>{{ item.stat.name | titlecase }}</ion-label>
+          <ion-label class="ion-text-right">{{ item.base_stat }}</ion-label>
+        </ion-item>
+      </ion-list>
 
     </ion-card-header>
 

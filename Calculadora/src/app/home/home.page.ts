@@ -43,20 +43,18 @@ export class HomePage {
       
       if(!this.n1Vazio() && !this.operadorVazio() && this.n2Vazio() && operador == '-') {
         this.n2 = "-";
-        this.display = this.n1+''+this.operador+''+this.n2;
       }else if(!this.n1Vazio() && this.n2Vazio()) {
         this.operador = operador;
-        this.display = this.n1+''+this.operador+''+this.n2;
       }
       else if(!this.n1Vazio() && !this.operadorVazio() && !this.n2Vazio()) {
         this.calcular();
         this.operador = operador;
-        this.display = this.n1+''+this.operador+''+this.n2;
       }else if(operador == "-" && this.n1Vazio()) {
         this.n1 = "-";
-        this.display = this.n1+''+this.operador+''+this.n2;
       }
      
+      this.display = this.n1+''+this.operador+''+this.n2;
+
     }
 
     this.temponto = false;
@@ -98,9 +96,7 @@ export class HomePage {
     
       if(this.operador == '/' && this.n2 == '0') {
         this.display = "Erro";
-        setTimeout(() => {
-          this.limpar();
-        }, 500);
+        setTimeout(() => this.limpar(), 500);
         return;
       } 
 
