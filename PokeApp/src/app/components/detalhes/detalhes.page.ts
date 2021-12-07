@@ -8,7 +8,9 @@ import { PokemonService } from 'src/app/services/pokemon.services.service';
 })
 export class DetalhesPage implements OnInit {
   pokemon = null;
+  pokemon_sprite = '';
   background = null;
+  forma = 'Normal';
 
   typeColors = {
     normal: "#bdbdb1",
@@ -35,6 +37,7 @@ export class DetalhesPage implements OnInit {
 
   ngOnInit() {
     this.pokemon = this.pkmServ.pokemon;
+    this.pokemon_sprite = this.pokemon.sprites.front_default;
     let colors = [];
     for(let t of this.pokemon.types) {
       colors.push(this.typeColors[t.type.name]);
@@ -47,6 +50,16 @@ export class DetalhesPage implements OnInit {
       this.background = `${colors[0]}`;
     }
 
+  }
+
+  trocarSprite() {
+    if(this.forma == 'Normal') {
+      this.pokemon_sprite = this.pokemon.sprites.front_shiny;
+      this.forma = 'Shiny';
+    }else {
+      this.pokemon_sprite = this.pokemon.sprites.front_default;
+      this.forma = 'Normal';
+    }
   }
 
   mostrarDetalhesTipo(tipo: string) {
